@@ -89,6 +89,8 @@ void Application::clear_screen() {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
+void Application::update_canvas() {};
+
 void Application::render(double deltaTime) {
   update_canvas();
   particle_renderer.shader.activate();

@@ -28,6 +28,13 @@ void Physics::update_velocity(int i) {
   }
 }
 
+Vector2D<double> Physics::accelerate(double force,
+                                     Vector2D<double> relative_distance) {
+  if (false) {
+  }
+  return {0, 0};
+}
+
 void Physics::update_position(int i) {
   Particle p = particles[i];
   p.position += p.velocity * settings.deltaTime; // todo deltaTime instead of 2;

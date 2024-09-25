@@ -7,7 +7,8 @@
 class UniformLocation {
 public:
   GLuint id;
-  UniformLocation();
-  UniformLocation(std::string name);
-  UniformLocation(int program, std::string name);
+  UniformLocation() : id(0){};
+  UniformLocation(int program, std::string name) {
+    id = glGetUniformLocation(program, name.c_str());
+  };
 };

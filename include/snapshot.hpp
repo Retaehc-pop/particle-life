@@ -12,5 +12,4 @@ public:
   std::vector<double> velocities;
   std::vector<double> positions;
   Snapshot(Physics p);
-  void create_particle_buffer();
 };

@@ -16,14 +16,14 @@ set(SFML_LIBS sfml-graphics sfml-system sfml-window)
 set(OMP_LIBS OpenMP::OpenMP_CXX)
 set(OGL_LIBS OpenGL::GL GLEW::GLEW glfw)
 
-file(GLOB_RECURSE SOURCES "src/*.cpp")
+file(GLOB_RECURSE SOURCES "src/*.cpp" "src/graphics/*.cpp")
 # Add the executable (replace main.cpp with your source files)
 add_executable(particle_life ${SOURCES})
 
 target_include_directories(particle_life PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
 if(OpenMP_CXX_FOUND)
-  target_link_libraries(particle_life PUBLIC ${SFML_LIBS} ${OMP_LIBS} ${OGL_LIBS})
+  target_link_libraries(particle_life PUBLIC ${OMP_LIBS} ${OGL_LIBS})
 endif()
 
 # Link the libraries

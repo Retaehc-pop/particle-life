@@ -11,6 +11,8 @@ int make_shader_obj(std::string resource, int type, std::string name) {
   return shader_obj;
 }
 
+Shader::Shader() : id(0) {}
+
 Shader::Shader(std::string vertex, std::string geometry, std::string fragment)
     : id(0) {
 
@@ -25,8 +27,8 @@ Shader::Shader(std::string vertex, std::string geometry, std::string fragment)
   transform_ul = UniformLocation(id, "transform");
   palette_ul = UniformLocation(id, "palette");
   size_ul = UniformLocation(id, "size");
-  detail_ul = UniformLocation("detail");
-  location_al = AttributeLocation(id, "x");
+  detail_ul = UniformLocation(id, "detail");
+  position_al = AttributeLocation(id, "x");
   velocity_al = AttributeLocation(id, "v");
   type_al = AttributeLocation(id, "type");
 }
