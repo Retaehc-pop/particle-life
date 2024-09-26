@@ -1,12 +1,12 @@
 #include "application.hpp"
 #include "clock.hpp"
+// #include "coordinates.hpp"
 #include "graphics/attributeLocation.hpp"
 #include <GL/gl.h>
-#include <chrono>
 #include <iostream>
 
-Application::Application(std::string title, AppSetting settings)
-    : settings(settings) {
+Application::Application(std::string title, bool fullscreen) {
+
   if (!glfwInit()) {
     std::cerr << "[ERROR] Failed to initialize GLFW" << std::endl;
     exit(-1);
@@ -39,7 +39,7 @@ Application::Application(std::string title, AppSetting settings)
   window_width = (int)((1 - f) * monitor_width);
   window_height = (int)((1 - f) * monitor_height);
 
-  if (settings.fullscreen) {
+  if (fullscreen) {
     window = glfwCreateWindow(window_width, window_height, title.c_str(),
                               primary, NULL);
   } else {
@@ -59,15 +59,16 @@ Application::Application(std::string title, AppSetting settings)
 }
 
 void Application::launch() {
+
   glewInit();
   glClearColor(0, 0, 0, 0);
-  // setup();
+  setup();
   Clock guiClock;
   while (!glfwWindowShouldClose(window)) {
     guiClock.tick();
 
-    pmouse_X = mouse_X;
-    pmouse_Y = mouse_Y;
+    // pmouse_X = mouse_X;
+    // pmouse_Y = mouse_Y;
 
     glfwPollEvents();
 
@@ -82,25 +83,33 @@ void Application::launch() {
   glfwSetErrorCallback(NULL);
 }
 
-void Application::setup() { glEnable(GL_MULTISAMPLE); }
+void Application::setup() {
+  glEnable(GL_MULTISAMPLE);
+  particle_renderer.init();
+}
 
 void Application::clear_screen() {
   glDisable(GL_SCISSOR_TEST);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Application::update_canvas() {};
+void Application::update_canvas() {
+  // Coordinates coordinates = {window_width * 1.0, window_height * 1.0, {0.5,
+  // 0.5}, 1.0};
+
+};
 
 void Application::render(double deltaTime) {
+  std::cout << "in render" << std::endl;
   update_canvas();
   particle_renderer.shader.activate();
   particle_renderer.shader.set_time(std::chrono::nanoseconds().count() /
                                     1000000000.0f);
   // particle_renderer.shader.set_palette();
   // particle_renderer.shader.set_transform();
-  particle_renderer.shader.set_size((settings.particle_size * 1) /
+  particle_renderer.shader.set_size((0.1 * 1) /
                                     std::min(window_width, window_height));
-  particle_renderer.shader.set_detail(3 + settings.particle_size);
+  particle_renderer.shader.set_detail(3 + 0.1);
 
   clear_screen();
 

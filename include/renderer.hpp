@@ -18,4 +18,5 @@ public:
   Renderer();
   void create_buffer_particle(Snapshot snapshot);
   void render(int vp_width, int vp_height);
+  void init();
 };

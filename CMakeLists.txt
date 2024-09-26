@@ -26,4 +26,24 @@ if(OpenMP_CXX_FOUND)
   target_link_libraries(particle_life PUBLIC ${OMP_LIBS} ${OGL_LIBS})
 endif()
 
-# Link the libraries
+# debug
+
+# Add a separate executable for debugging
+add_executable(particle_life_debug ${SOURCES})
+
+# Set the debug compile options
+target_compile_definitions(particle_life_debug PRIVATE DEBUG)
+
+# Optionally set compiler flags for debug mode (this example assumes GCC/Clang)
+target_compile_options(particle_life_debug PRIVATE
+    $<$<CONFIG:DEBUG>:-g -O0>  # Enable debug symbols and disable optimizations
+)
+
+target_include_directories(particle_life_debug PUBLIC ${CMAKE_SOURCE_DIR}/include)
+
+if(OpenMP_CXX_FOUND)
+  target_link_libraries(particle_life_debug PUBLIC ${OMP_LIBS} ${OGL_LIBS})
+endif()
+
+# Set the debug executable as the target for the debug build
+set_target_properties(particle_life_debug PROPERTIES DEBUG_POSTFIX "_debug")

@@ -1,6 +1,20 @@
 #include "physics.hpp"
 #include "particle.hpp"
+#include "positionSetter.hpp"
 #include "vector2d.hpp"
+
+Physics::Physics() : settings(), typ_setter(), pos_setter(){};
+
+Particle generateParticle() {
+  Particle p = {};
+  return p;
+}
+
+void Physics::set_particle_count(int n) {
+  particles.resize(n);
+  for (int i = 0; i < n; i++) {
+  }
+}
 
 void Physics::update_velocity(int i) {
   auto p = particles[i];

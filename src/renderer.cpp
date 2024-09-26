@@ -4,6 +4,13 @@ Renderer::Renderer()
     : vao(), vbo_pos(), vbo_vel(), vbo_typ(), shader(), last_shader(-1),
       last_size(0) {}
 
+void Renderer::init() {
+  vao.init();
+  vbo_pos.init();
+  vbo_vel.init();
+  vbo_typ.init();
+}
+
 void Renderer::create_buffer_particle(Snapshot snapshot) {
   vao.bind();
 

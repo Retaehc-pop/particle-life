@@ -5,8 +5,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <string>
+
 class Application {
-  AppSetting settings;
   GLFWwindow *window;
   GLFWmonitor *primary_monitor;
   GLFWvidmode *video_mode;
@@ -20,10 +20,12 @@ class Application {
   double pmouse_X;
   double pmouse_Y;
 
+  AppSetting settings;
+  Physics physics;
   Renderer particle_renderer;
 
 public:
-  Application(std::string title, AppSetting settings);
+  Application(std::string title, bool fullscreen);
   void launch();
   void setup();
   void clear_screen();
