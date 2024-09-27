@@ -23,6 +23,7 @@ class Application {
   AppSetting settings;
   Physics physics;
   Renderer particle_renderer;
+  Snapshot snapshot;
 
 public:
   Application(std::string title, bool fullscreen);

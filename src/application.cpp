@@ -4,6 +4,7 @@
 #include "graphics/attributeLocation.hpp"
 #include <GL/gl.h>
 #include <iostream>
+#include <thread>
 
 Application::Application(std::string title, bool fullscreen) {
 
@@ -86,6 +87,10 @@ void Application::launch() {
 void Application::setup() {
   glEnable(GL_MULTISAMPLE);
   particle_renderer.init();
+  physics.set_particle_count(10000);
+  snapshot.set(physics);
+
+  // create a thread to update position of the current physics;
 }
 
 void Application::clear_screen() {
@@ -96,11 +101,11 @@ void Application::clear_screen() {
 void Application::update_canvas() {
   // Coordinates coordinates = {window_width * 1.0, window_height * 1.0, {0.5,
   // 0.5}, 1.0};
-
+  particle_renderer.shader.activate();
+  particle_renderer.create_buffer_particle(snapshot);
 };
 
 void Application::render(double deltaTime) {
-  std::cout << "in render" << std::endl;
   update_canvas();
   particle_renderer.shader.activate();
   particle_renderer.shader.set_time(std::chrono::nanoseconds().count() /

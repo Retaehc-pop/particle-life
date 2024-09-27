@@ -8,7 +8,7 @@ public:
   T x, y;
 
   // Constructors
-  Vector2D() : x(NULL), y(NULL) {}   // Default constructor
+  Vector2D() : x(0), y(0) {}         // Default constructor
   Vector2D(T x, T y) : x(x), y(y) {} // Parameterized constructor
 
   // Operator Overloads

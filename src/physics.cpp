@@ -5,14 +5,35 @@
 
 Physics::Physics() : settings(), typ_setter(), pos_setter(){};
 
-Particle generateParticle() {
-  Particle p = {};
+void Physics::set_particle_types(Particle &p) {
+  p.type = typ_setter.get_active()({}, {}, p.type, settings.matrix.size);
+}
+
+void Physics::set_particle_position(Particle &p) {
+  pos_setter.get_active()(p.position, p.type, settings.matrix.size);
+  p.velocity = {0, 0};
+}
+
+Particle Physics::generate_particle() {
+  Particle p;
+  set_particle_types(p);
+  set_particle_position(p);
   return p;
 }
 
 void Physics::set_particle_count(int n) {
   particles.resize(n);
   for (int i = 0; i < n; i++) {
+  }
+}
+void Physics::update_particles() {
+
+  for (int i = 0; i < particles.size(); i++) {
+    update_velocity(i);
+  }
+
+  for (int i = 0; i < particles.size(); i++) {
+    update_position(i);
   }
 }
 

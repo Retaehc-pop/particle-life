@@ -8,8 +8,12 @@ private:
   Physics physics;
 
 public:
+  Snapshot();
+  Snapshot(Physics p);
+
   std::vector<int> types;
   std::vector<double> velocities;
   std::vector<double> positions;
-  Snapshot(Physics p);
+
+  void set(Physics p);
 };

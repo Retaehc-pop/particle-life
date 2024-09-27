@@ -11,7 +11,7 @@ public:
   double deltaTime = 0.02f;
   ForceMatrix matrix;
 
-  PhysicsSetting();
+  PhysicsSetting() : matrix(5){};
   PhysicsSetting(bool wrap, double rmax, double friction, double dt,
                  double force, ForceMatrix matrix)
       : wrap(wrap), rmax(rmax), friction(friction), deltaTime(dt), force(force),

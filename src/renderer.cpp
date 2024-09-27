@@ -9,6 +9,7 @@ void Renderer::init() {
   vbo_pos.init();
   vbo_vel.init();
   vbo_typ.init();
+  shader.init();
 }
 
 void Renderer::create_buffer_particle(Snapshot snapshot) {
@@ -65,7 +66,8 @@ void Renderer::create_buffer_particle(Snapshot snapshot) {
 
 void Renderer::render(int vp_width, int vp_height) {
   if (shader.id == 0 || last_size <= 0)
-    return;
+    std::cerr << shader.id << " " << last_size << std::endl;
+  return;
 
   glDisable(GL_SCISSOR_TEST);
   glViewport(0, 0, vp_width, vp_height);
