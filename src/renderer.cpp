@@ -9,7 +9,7 @@ void Renderer::init() {
   vbo_pos.init();
   vbo_vel.init();
   vbo_typ.init();
-  shader.init();
+  shader = {"", "", ""};
 }
 
 void Renderer::create_buffer_particle(Snapshot snapshot) {

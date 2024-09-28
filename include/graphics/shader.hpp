@@ -19,6 +19,7 @@ public:
   GLuint id;
   Shader(std::string vertex, std::string geometry, std::string fragment);
   Shader();
+  void init();
   void activate();
   void set_time(float time);
   void set_size(float size);

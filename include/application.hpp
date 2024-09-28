@@ -2,6 +2,7 @@
 
 #include "renderer.hpp"
 #include "setting/appSettings.hpp"
+#include "threadController.hpp"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <string>
@@ -24,6 +25,7 @@ class Application {
   Physics physics;
   Renderer particle_renderer;
   Snapshot snapshot;
+  ThreadController physics_thread;
 
 public:
   Application(std::string title, bool fullscreen);

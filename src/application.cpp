@@ -1,10 +1,8 @@
 #include "application.hpp"
 #include "clock.hpp"
-// #include "coordinates.hpp"
 #include "graphics/attributeLocation.hpp"
 #include <GL/gl.h>
 #include <iostream>
-#include <thread>
 
 Application::Application(std::string title, bool fullscreen) {
 
@@ -91,6 +89,7 @@ void Application::setup() {
   snapshot.set(physics);
 
   // create a thread to update position of the current physics;
+  physics_thread.set_function(std::bind(&Physics::update_particles, &physics));
 }
 
 void Application::clear_screen() {
