@@ -1,5 +1,5 @@
+/*
 #include "application.hpp"
-#include "clock.hpp"
 #include "graphics/attributeLocation.hpp"
 #include <GL/gl.h>
 #include <iostream>
@@ -52,9 +52,9 @@ Application::Application(std::string title, bool fullscreen) {
   }
 
   glfwMakeContextCurrent(window);
-  // glfwSwapInterval(1);
+  glfwSwapInterval(1);
   glfwShowWindow(window);
-  glViewport(0, 0, 800, 800);
+  // glViewport(0, 0, 800, 800);
 }
 
 void Application::launch() {
@@ -90,6 +90,7 @@ void Application::setup() {
 
   // create a thread to update position of the current physics;
   physics_thread.set_function(std::bind(&Physics::update_particles, &physics));
+  physics_thread.start();
 }
 
 void Application::clear_screen() {
@@ -119,3 +120,4 @@ void Application::render(double deltaTime) {
 
   particle_renderer.render(window_width, window_height);
 }
+*/

@@ -8,8 +8,10 @@
 #include <vector>
 
 class Physics {
-private:
+public:
   PhysicsSetting settings;
+
+private:
   PositionSetter pos_setter;
   TypeSetter typ_setter;
 

@@ -11,6 +11,8 @@ void Physics::set_particle_types(Particle &p) {
 
 void Physics::set_particle_position(Particle &p) {
   pos_setter.get_active()(p.position, p.type, settings.matrix.size);
+  // std::cout << "(" << p.position.x << "," << p.position.y << ")" <<
+  // std::endl;
   p.velocity = {0, 0};
 }
 
@@ -24,6 +26,7 @@ Particle Physics::generate_particle() {
 void Physics::set_particle_count(int n) {
   particles.resize(n);
   for (int i = 0; i < n; i++) {
+    particles[i] = generate_particle();
   }
 }
 void Physics::update_particles() {

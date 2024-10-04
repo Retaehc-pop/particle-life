@@ -2,7 +2,7 @@
 #include "vector2d.hpp"
 #include <vector>
 
-typedef void (*position_set_function)(Vector2D<double> position, int type,
+typedef void (*position_set_function)(Vector2D<double> &position, int type,
                                       int n_types);
 
 class PositionSetter {
